@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  <h1>{{ self.title }}</h1>
+  <p class='meta'>{{ self.date }}</p>
+  <div class='intro'>{{ self.intro }}</div>
+  {% for child in self.body %}
+    {% if child.block_type == 'heading' %}
+      <h2>{{ child }}</h2>
+    {% endif %}
+  {% endfor %}
+
+
+  <p><a href='{{ self.get_parent.url }}'>Return to Blog</a></p>
+{% endblock %}
